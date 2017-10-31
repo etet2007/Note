@@ -20,7 +20,7 @@
     [self.privateItems addObject:noteModel];
     return noteModel;
 }
-
+//获取NoteStore对象
 + (instancetype)getNoteStore { 
     //将sharedStore指针声明为了静态变量（static variable）
     static NoteStore *noteStore=nil;
@@ -73,4 +73,8 @@
                                               toFile:path];
     
 }
+- (void)removeNote:(NoteModel *)item { 
+    [self.privateItems removeObjectIdenticalTo:item];;
+}
+
 @end

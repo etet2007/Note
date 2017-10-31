@@ -26,30 +26,34 @@
 //    [[NoteStore getNoteStore]createNote];
     
     if(self) {
+        //The navigation item used to represent the view controller in a parent's navigation bar.
         UINavigationItem *navItem = self.navigationItem;
         navItem.title = @"NoteList";
         // 创建新的UIBarButtonItem对象
-        // 将其目标对象设置为当前对象，将其动作方法设置为addNewItem:
-        UIBarButtonItem *addBututon = [[UIBarButtonItem alloc]
+        // 将其目标对象设置为当前对象，将其动作方法设置为addNoteItem:
+        UIBarButtonItem * addBututon = [[UIBarButtonItem alloc]
        initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                 target:self                                action:@selector(addNoteItem:)];
+        
         // 为UINavigationItem对象的rightBarButtonItem属性赋值，
         // 指向新创建的UIBarButtonItem对象
         navItem.rightBarButtonItem = addBututon;
+        //UIViewController对象有一个名为editButtonItem的属性，不用自己创建。
+        navItem.leftBarButtonItem = self.editButtonItem;
     }
     
     return self;
 }
+//固定了Style
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
     return [self init];
 }
 
-
+//Called after the controller's view is loaded into memory.
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [self.tableView registerClass:[UITableViewCell class]
-//           forCellReuseIdentifier:@"UITableViewCell"];
+
     // 创建UINib对象，该对象代表包含了NoteTableViewCell的NIB文件
     UINib *nib = [UINib nibWithNibName:@"NoteTableViewCell" bundle:nil];
     // 通过UINib对象注册相应的NIB文件
@@ -57,7 +61,7 @@
          forCellReuseIdentifier:@"NoteTableViewCell"];
     
     // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+//     self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -80,38 +84,74 @@
     return [[[NoteStore getNoteStore]allItems]count];
 }
 
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//设置NoteTableViewCell的地方
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NoteTableViewCell *cell= [tableView dequeueReusableCellWithIdentifier:@"NoteTableViewCell" forIndexPath:indexPath];
     
     NSArray *items =[[NoteStore getNoteStore]allItems];
     NoteModel *item=items[indexPath.row];
     
     cell.notePreviewLabel.text=item.content;
-    
+//    NSLog(@"%@", item.dateString);
+    cell.dateLabel.text=item.dateString;
     
     return cell;
 }
-
+//按下tableView时的跳转，NoteEditViewController在这里完成初始化！
 - (void) tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NoteEditViewController *editViewController =[[NoteEditViewController alloc] init];
+    NoteEditViewController * editViewController =[[NoteEditViewController alloc] init];
     
     NSArray *items = [[NoteStore getNoteStore] allItems];
     NoteModel *selectedItem = items[indexPath.row];
-    // 将选中的BNRItem对象赋给DetailViewController对象
+    // 将选中的NoteModel对象赋给NoteEditViewController对象，NoteEditViewController知道显示哪个Note了。
     editViewController.noteItem = selectedItem;
     
-    // 将新创建的editViewController对象压入UINavigationController对象的栈
+    // 将新创建的editViewController对象压入UINavigationController对象的栈。
     [self.navigationController pushViewController:editViewController
                                          animated:YES];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    //刷新数据
     [self.tableView reloadData];
 }
+- (IBAction)addNoteItem:(id)sender
+{
+    NoteModel *newItem = [[NoteStore getNoteStore] createNote];
+    
+    
+    // 获取新创建的对象在allItems数组中的索引
+    NSInteger lastRow = [[[NoteStore getNoteStore] allItems] indexOfObject:newItem];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lastRow inSection:0];
+    //将新行插入UITableView对象
+    [self.tableView insertRowsAtIndexPaths:@[indexPath]
+                          withRowAnimation:UITableViewRowAnimationTop];
+    //新建后选中不跳转
+//    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
+    //新建后进行跳转
+    [self tableView:self didSelectRowAtIndexPath:indexPath];
+}
+
+- (void)tableView:(UITableView *)tableView
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //如果UITableView对象请求确认的是删除操作
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        NSArray *items = [[NoteStore getNoteStore] allItems];
+        NoteModel *item = items[indexPath.row];
+        [[NoteStore getNoteStore] removeNote:item];
+        // 还要删除表格视图中的相应表格行（带动画效果）
+        [tableView deleteRowsAtIndexPaths:@[indexPath]
+                         withRowAnimation:UITableViewRowAnimationFade];
+    } }
+
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

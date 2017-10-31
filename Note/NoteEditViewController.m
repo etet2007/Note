@@ -56,7 +56,7 @@
     // 将修改“保存”至BNRItem对象
     NoteModel *item = self.noteItem;
     item.content = self.noteTextView.text;
-  
+    [item updateDate];
 }
 - (void)setNoteItem:(NoteModel *)item
 {

@@ -12,9 +12,12 @@
 
 - (instancetype)init {
     self=[super init];
-    _date=[NSDate date];
-    //test code
-    _content=@"firestNote firestNote firestNote firestNote firestNote firestNote firestNote";
+    
+
+    [self updateDate];
+    
+    _content=@"";
+    //bug
     _type=@"Work";
     return self;
 }
@@ -31,7 +34,7 @@
     NSString *descriptionString =
     [[NSString alloc] initWithFormat:@"Content:%@, date:%@ , type:%@",
      self.content,
-     self.date,
+     self.dateString,
      self.type];
     return descriptionString;
 }
@@ -39,7 +42,7 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.content forKey:@"content"];
-    [aCoder encodeObject:self.date forKey:@"date"];
+    [aCoder encodeObject:self.dateString forKey:@"dateString"];
     [aCoder encodeObject:self.type forKey:@"type"];
 }
 
@@ -49,9 +52,20 @@
     self=[super init];
     if (self) {
         _content = [aDecoder decodeObjectForKey:@"content"];
-        _date = [aDecoder decodeObjectForKey:@"date"];
+        _dateString = [aDecoder decodeObjectForKey:@"dateString"];
         _type = [aDecoder decodeObjectForKey:@"type"];
     }
     return self;
 }
+- (void)updateDate { 
+    static NSDateFormatter *dateFormatter = nil;
+    if (!dateFormatter) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateStyle = NSDateFormatterMediumStyle;
+        dateFormatter.timeStyle = NSDateFormatterShortStyle;
+    }
+    //得到转换后得到的日期字符串
+    _dateString = [dateFormatter stringFromDate:[NSDate date]];
+}
+
 @end

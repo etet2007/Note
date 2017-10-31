@@ -13,7 +13,10 @@
 @property(nonatomic,readonly)NSArray *allItems;
 
 + (instancetype)getNoteStore;
--(NoteModel *)createNote;
-//保存
+
+- (NoteModel *)createNote;
+- (void)removeNote:(NoteModel *)item;
+
+//保存数据
 - (BOOL) saveChanges;
 @end
