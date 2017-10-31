@@ -16,6 +16,7 @@
 
 - (NoteModel *)createNote;
 - (void)removeNote:(NoteModel *)item;
+- (void)removeAll;
 
 //保存数据
 - (BOOL) saveChanges;

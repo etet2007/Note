@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface MainTableViewController : UITableViewController
-
+{
+    UIBarButtonItem * addBututon;
+    UIBarButtonItem * deleteBututon;
+}
 @end

@@ -77,4 +77,8 @@
     [self.privateItems removeObjectIdenticalTo:item];;
 }
 
+- (void)removeAll { 
+    [self.privateItems removeAllObjects];
+}
+
 @end

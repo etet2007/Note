@@ -23,15 +23,14 @@
     //调用父类的指定初始化方法
     self = [super initWithStyle:UITableViewStylePlain];
 //    [[NoteStore getNoteStore]createNote];
-//    [[NoteStore getNoteStore]createNote];
-    
+
     if(self) {
         //The navigation item used to represent the view controller in a parent's navigation bar.
         UINavigationItem *navItem = self.navigationItem;
         navItem.title = @"NoteList";
         // 创建新的UIBarButtonItem对象
         // 将其目标对象设置为当前对象，将其动作方法设置为addNoteItem:
-        UIBarButtonItem * addBututon = [[UIBarButtonItem alloc]
+        addBututon = [[UIBarButtonItem alloc]
        initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                 target:self                                action:@selector(addNoteItem:)];
         
@@ -40,6 +39,10 @@
         navItem.rightBarButtonItem = addBututon;
         //UIViewController对象有一个名为editButtonItem的属性，不用自己创建。
         navItem.leftBarButtonItem = self.editButtonItem;
+        
+        deleteBututon = [[UIBarButtonItem alloc]
+                      initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
+                      target:self                                action:@selector(deleteAllNote:)];
     }
     
     return self;
@@ -48,6 +51,17 @@
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
     return [self init];
+}
+
+-(void)setEditing:(BOOL)editing animated:(BOOL)animated
+
+{
+    [super setEditing:editing animated:animated];
+    if(editing){
+        self.navigationItem.rightBarButtonItem=deleteBututon;
+    }else{
+        self.navigationItem.rightBarButtonItem=addBututon;
+    }
 }
 
 //Called after the controller's view is loaded into memory.
@@ -136,6 +150,27 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     [self tableView:self didSelectRowAtIndexPath:indexPath];
 }
 
+- (IBAction)deleteAllNote:(id)sender
+{
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"ALERT"
+                                                                   message:@"Delete all notes."
+                                                        preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* deleteAction = [UIAlertAction actionWithTitle:@"DELETE"
+                                                            style:UIAlertActionStyleDestructive
+                                                          handler:^(UIAlertAction * action) {
+                                                              [[NoteStore getNoteStore]removeAll];
+                                                              [self.tableView reloadData];
+                                                          }];
+    //^(UIAlertAction * action){}匿名函数？
+    [alert addAction:deleteAction];
+    
+    UIAlertAction* cancleAction = [UIAlertAction actionWithTitle:@"Cancle"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:nil];
+    [alert addAction:cancleAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
 - (void)tableView:(UITableView *)tableView
 commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 forRowAtIndexPath:(NSIndexPath *)indexPath
