@@ -10,7 +10,8 @@
 #import "NoteStore.h"
 #import "NoteTableViewCell.h"
 #import "NoteModel.h"
-//#import "NoteModel+CoreDataProperties.h"
+#import "NoteEditViewController.h"
+
 @interface MainTableViewController ()
 
 @end
@@ -21,8 +22,21 @@
 - (instancetype) init{
     //调用父类的指定初始化方法
     self = [super initWithStyle:UITableViewStylePlain];
-    [[NoteStore getNoteStore]createNote];
-    [[NoteStore getNoteStore]createNote];
+//    [[NoteStore getNoteStore]createNote];
+//    [[NoteStore getNoteStore]createNote];
+    
+    if(self) {
+        UINavigationItem *navItem = self.navigationItem;
+        navItem.title = @"NoteList";
+        // 创建新的UIBarButtonItem对象
+        // 将其目标对象设置为当前对象，将其动作方法设置为addNewItem:
+        UIBarButtonItem *addBututon = [[UIBarButtonItem alloc]
+       initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                target:self                                action:@selector(addNoteItem:)];
+        // 为UINavigationItem对象的rightBarButtonItem属性赋值，
+        // 指向新创建的UIBarButtonItem对象
+        navItem.rightBarButtonItem = addBututon;
+    }
     
     return self;
 }
@@ -74,12 +88,30 @@
     NoteModel *item=items[indexPath.row];
     
     cell.notePreviewLabel.text=item.content;
-
+    
     
     return cell;
 }
 
-
+- (void) tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NoteEditViewController *editViewController =[[NoteEditViewController alloc] init];
+    
+    NSArray *items = [[NoteStore getNoteStore] allItems];
+    NoteModel *selectedItem = items[indexPath.row];
+    // 将选中的BNRItem对象赋给DetailViewController对象
+    editViewController.noteItem = selectedItem;
+    
+    // 将新创建的editViewController对象压入UINavigationController对象的栈
+    [self.navigationController pushViewController:editViewController
+                                         animated:YES];
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

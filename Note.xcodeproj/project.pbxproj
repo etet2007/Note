@@ -17,6 +17,8 @@
 		066107881FA4552600ADB619 /* NoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 066107861FA4552600ADB619 /* NoteTableViewCell.m */; };
 		066107891FA4552600ADB619 /* NoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 066107871FA4552600ADB619 /* NoteTableViewCell.xib */; };
 		068A24691FA6CCD70036F841 /* NoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 068A24681FA6CCD70036F841 /* NoteModel.m */; };
+		068A246D1FA707030036F841 /* NoteEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 068A246B1FA707030036F841 /* NoteEditViewController.m */; };
+		068A246E1FA707030036F841 /* NoteEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 068A246C1FA707030036F841 /* NoteEditViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,9 @@
 		066107871FA4552600ADB619 /* NoteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteTableViewCell.xib; sourceTree = "<group>"; };
 		068A24671FA6CCD60036F841 /* NoteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteModel.h; sourceTree = "<group>"; };
 		068A24681FA6CCD70036F841 /* NoteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteModel.m; sourceTree = "<group>"; };
+		068A246A1FA707030036F841 /* NoteEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteEditViewController.h; sourceTree = "<group>"; };
+		068A246B1FA707030036F841 /* NoteEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteEditViewController.m; sourceTree = "<group>"; };
+		068A246C1FA707030036F841 /* NoteEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteEditViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +80,9 @@
 				0661077D1FA41B5700ADB619 /* MainTableViewController.m */,
 				066107661FA419AF00ADB619 /* AppDelegate.h */,
 				066107671FA419AF00ADB619 /* AppDelegate.m */,
+				068A246A1FA707030036F841 /* NoteEditViewController.h */,
+				068A246B1FA707030036F841 /* NoteEditViewController.m */,
+				068A246C1FA707030036F841 /* NoteEditViewController.xib */,
 				066107821FA4267600ADB619 /* NoteStore.h */,
 				066107831FA4267600ADB619 /* NoteStore.m */,
 				0661076C1FA419AF00ADB619 /* Main.storyboard */,
@@ -150,6 +158,7 @@
 				066107731FA419AF00ADB619 /* LaunchScreen.storyboard in Resources */,
 				066107701FA419AF00ADB619 /* Assets.xcassets in Resources */,
 				0661076E1FA419AF00ADB619 /* Main.storyboard in Resources */,
+				068A246E1FA707030036F841 /* NoteEditViewController.xib in Resources */,
 				066107891FA4552600ADB619 /* NoteTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -167,6 +176,7 @@
 				066107881FA4552600ADB619 /* NoteTableViewCell.m in Sources */,
 				0661077E1FA41B5700ADB619 /* MainTableViewController.m in Sources */,
 				066107841FA4267600ADB619 /* NoteStore.m in Sources */,
+				068A246D1FA707030036F841 /* NoteEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

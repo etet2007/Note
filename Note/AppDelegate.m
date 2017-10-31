@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "MainTableViewController.h"
+#import "NoteStore.h"
+
 @interface AppDelegate ()
 
 @end
@@ -19,9 +21,15 @@
     // Override point for customization after application launch.
     //initialize UIWindow
     self.window=[[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+
     //initialize MainTableViewController
     MainTableViewController *mainViewController=[[MainTableViewController alloc] init];
-    self.window.rootViewController=mainViewController;
+    
+    // 创建UINavigationController对象
+    // 该对象的栈只包含mainViewController
+    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:mainViewController];
+    // 将UINavigationController对象设置为UIWindow对象的根视图控制器，
+    self.window.rootViewController=navController;
     self.window.backgroundColor=[UIColor blackColor];
     [self.window makeKeyAndVisible];
     return YES;
@@ -37,6 +45,13 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    BOOL success=[[NoteStore getNoteStore] saveChanges];
+    if (success) {
+        NSLog(@"Saved all of the notes");
+    } else {
+        NSLog(@"Could not save any of the notes");
+    }
+    
 }
 
 

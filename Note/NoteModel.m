@@ -8,7 +8,7 @@
 
 #import "NoteModel.h"
 
-@implementation NoteModel
+@implementation NoteModel 
 
 - (instancetype)init {
     self=[super init];
@@ -26,6 +26,7 @@
      }
     return self;
 }
+//description函数
 -(NSString *)description{
     NSString *descriptionString =
     [[NSString alloc] initWithFormat:@"Content:%@, date:%@ , type:%@",
@@ -34,5 +35,23 @@
      self.type];
     return descriptionString;
 }
+//NSCoding带来的函数，保存数据
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.content forKey:@"content"];
+    [aCoder encodeObject:self.date forKey:@"date"];
+    [aCoder encodeObject:self.type forKey:@"type"];
+}
 
+//initWithCoder:是一个特例，和其他初始化方法无关。
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self=[super init];
+    if (self) {
+        _content = [aDecoder decodeObjectForKey:@"content"];
+        _date = [aDecoder decodeObjectForKey:@"date"];
+        _type = [aDecoder decodeObjectForKey:@"type"];
+    }
+    return self;
+}
 @end

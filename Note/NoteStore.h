@@ -14,4 +14,6 @@
 
 + (instancetype)getNoteStore;
 -(NoteModel *)createNote;
+//保存
+- (BOOL) saveChanges;
 @end
