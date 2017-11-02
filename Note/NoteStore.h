@@ -9,9 +9,14 @@
 #import <Foundation/Foundation.h>
 @class NoteModel;
 
+@import CoreData;
 @interface NoteStore : NSObject
 @property(nonatomic,readonly)NSArray *allItems;
 
+@property (nonatomic, strong) NSManagedObjectContext *context;
+@property (nonatomic, strong) NSManagedObjectModel *model;
+
+@property(nonatomic, strong) NSPersistentStoreCoordinator *psc;
 + (instancetype)getNoteStore;
 
 - (NoteModel *)createNote;

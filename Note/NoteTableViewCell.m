@@ -10,6 +10,7 @@
 
 @implementation NoteTableViewCell
 
+//当NIB文件解档某个对象后，该对象就会收到awakeFromNib消息，可以在awakeFromNib中设置该对象，或者执行其他需要的初始化操作。
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
@@ -20,7 +21,7 @@
 
     // Configure the view for the selected state
 }
-- (IBAction)editNote:(id)sender {
-}
+//- (IBAction)editNote:(id)sender {
+//}
 
 @end

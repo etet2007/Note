@@ -9,7 +9,8 @@
 #import "MainTableViewController.h"
 #import "NoteStore.h"
 #import "NoteTableViewCell.h"
-#import "NoteModel.h"
+//#import "NoteModel.h"
+#import "NoteModel+CoreDataClass.h"
 #import "NoteEditViewController.h"
 
 @interface MainTableViewController ()
@@ -109,7 +110,18 @@
     cell.notePreviewLabel.text=item.content;
 //    NSLog(@"%@", item.dateString);
     cell.dateLabel.text=item.dateString;
+//    NSLog(@"%@",item.type);
+
+    if([item.type isEqualToString:@"conference"])
+        cell.typeImageView.image=[UIImage imageNamed:@"50_1"];
+    else if([item.type isEqualToString:@"to-do"])
+        cell.typeImageView.image=[UIImage imageNamed:@"50_2"];
+    else if([item.type isEqualToString:@"anniversary"])
+        cell.typeImageView.image=[UIImage imageNamed:@"50_3"];
+    else if([item.type isEqualToString:@"memorandum"])
+        cell.typeImageView.image=[UIImage imageNamed:@"50_4"];
     
+        
     return cell;
 }
 //按下tableView时的跳转，NoteEditViewController在这里完成初始化！
@@ -162,7 +174,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                                                               [[NoteStore getNoteStore]removeAll];
                                                               [self.tableView reloadData];
                                                           }];
-    //^(UIAlertAction * action){}匿名函数？
+    //^(UIAlertAction * action){}匿名函数？  
     [alert addAction:deleteAction];
     
     UIAlertAction* cancleAction = [UIAlertAction actionWithTitle:@"Cancle"

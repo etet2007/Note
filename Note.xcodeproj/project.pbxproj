@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06359DB01FA95B58008830C8 /* NoteModel+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 06359DAD1FA95B58008830C8 /* NoteModel+CoreDataClass.m */; };
+		06359DB11FA95B58008830C8 /* NoteModel+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 06359DAF1FA95B58008830C8 /* NoteModel+CoreDataProperties.m */; };
 		066107681FA419AF00ADB619 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 066107671FA419AF00ADB619 /* AppDelegate.m */; };
 		0661076E1FA419AF00ADB619 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0661076C1FA419AF00ADB619 /* Main.storyboard */; };
 		066107701FA419AF00ADB619 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0661076F1FA419AF00ADB619 /* Assets.xcassets */; };
@@ -16,12 +18,17 @@
 		066107841FA4267600ADB619 /* NoteStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 066107831FA4267600ADB619 /* NoteStore.m */; };
 		066107881FA4552600ADB619 /* NoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 066107861FA4552600ADB619 /* NoteTableViewCell.m */; };
 		066107891FA4552600ADB619 /* NoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 066107871FA4552600ADB619 /* NoteTableViewCell.xib */; };
-		068A24691FA6CCD70036F841 /* NoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 068A24681FA6CCD70036F841 /* NoteModel.m */; };
 		068A246D1FA707030036F841 /* NoteEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 068A246B1FA707030036F841 /* NoteEditViewController.m */; };
 		068A246E1FA707030036F841 /* NoteEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 068A246C1FA707030036F841 /* NoteEditViewController.xib */; };
+		06C20ECE1FA96C57008B124D /* Note.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06359D961FA8674E008830C8 /* Note.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06359D971FA8674E008830C8 /* Note.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Note.xcdatamodel; sourceTree = "<group>"; };
+		06359DAC1FA95B58008830C8 /* NoteModel+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NoteModel+CoreDataClass.h"; sourceTree = "<group>"; };
+		06359DAD1FA95B58008830C8 /* NoteModel+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NoteModel+CoreDataClass.m"; sourceTree = "<group>"; };
+		06359DAE1FA95B58008830C8 /* NoteModel+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NoteModel+CoreDataProperties.h"; sourceTree = "<group>"; };
+		06359DAF1FA95B58008830C8 /* NoteModel+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NoteModel+CoreDataProperties.m"; sourceTree = "<group>"; };
 		066107631FA419AF00ADB619 /* Note.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Note.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		066107661FA419AF00ADB619 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		066107671FA419AF00ADB619 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -37,8 +44,6 @@
 		066107851FA4552600ADB619 /* NoteTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteTableViewCell.h; sourceTree = "<group>"; };
 		066107861FA4552600ADB619 /* NoteTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteTableViewCell.m; sourceTree = "<group>"; };
 		066107871FA4552600ADB619 /* NoteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteTableViewCell.xib; sourceTree = "<group>"; };
-		068A24671FA6CCD60036F841 /* NoteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteModel.h; sourceTree = "<group>"; };
-		068A24681FA6CCD70036F841 /* NoteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteModel.m; sourceTree = "<group>"; };
 		068A246A1FA707030036F841 /* NoteEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteEditViewController.h; sourceTree = "<group>"; };
 		068A246B1FA707030036F841 /* NoteEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteEditViewController.m; sourceTree = "<group>"; };
 		068A246C1FA707030036F841 /* NoteEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteEditViewController.xib; sourceTree = "<group>"; };
@@ -74,10 +79,13 @@
 		066107651FA419AF00ADB619 /* Note */ = {
 			isa = PBXGroup;
 			children = (
-				068A24671FA6CCD60036F841 /* NoteModel.h */,
-				068A24681FA6CCD70036F841 /* NoteModel.m */,
+				06359DAC1FA95B58008830C8 /* NoteModel+CoreDataClass.h */,
+				06359DAD1FA95B58008830C8 /* NoteModel+CoreDataClass.m */,
+				06359DAE1FA95B58008830C8 /* NoteModel+CoreDataProperties.h */,
+				06359DAF1FA95B58008830C8 /* NoteModel+CoreDataProperties.m */,
 				0661077C1FA41B5700ADB619 /* MainTableViewController.h */,
 				0661077D1FA41B5700ADB619 /* MainTableViewController.m */,
+				06359D961FA8674E008830C8 /* Note.xcdatamodeld */,
 				066107661FA419AF00ADB619 /* AppDelegate.h */,
 				066107671FA419AF00ADB619 /* AppDelegate.m */,
 				068A246A1FA707030036F841 /* NoteEditViewController.h */,
@@ -128,6 +136,7 @@
 				TargetAttributes = {
 					066107621FA419AF00ADB619 = {
 						CreatedOnToolsVersion = 9.0.1;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -170,13 +179,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				068A24691FA6CCD70036F841 /* NoteModel.m in Sources */,
+				06C20ECE1FA96C57008B124D /* Note.xcdatamodeld in Sources */,
 				066107761FA419AF00ADB619 /* main.m in Sources */,
 				066107681FA419AF00ADB619 /* AppDelegate.m in Sources */,
 				066107881FA4552600ADB619 /* NoteTableViewCell.m in Sources */,
 				0661077E1FA41B5700ADB619 /* MainTableViewController.m in Sources */,
 				066107841FA4267600ADB619 /* NoteStore.m in Sources */,
 				068A246D1FA707030036F841 /* NoteEditViewController.m in Sources */,
+				06359DB01FA95B58008830C8 /* NoteModel+CoreDataClass.m in Sources */,
+				06359DB11FA95B58008830C8 /* NoteModel+CoreDataProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,11 +321,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Note/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Chenyee.Note;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Note-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -323,11 +338,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Note/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Chenyee.Note;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Note-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -354,6 +372,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		06359D961FA8674E008830C8 /* Note.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				06359D971FA8674E008830C8 /* Note.xcdatamodel */,
+			);
+			currentVersion = 06359D971FA8674E008830C8 /* Note.xcdatamodel */;
+			path = Note.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0661075B1FA419AF00ADB619 /* Project object */;
 }
